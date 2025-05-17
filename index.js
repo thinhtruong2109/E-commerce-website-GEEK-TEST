@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const port = 3000;
 const {sequelize, connect} = require('./config/database');
 const User = require('./models/User.js');
 const Account = require('./models/Account.js');
@@ -12,15 +11,35 @@ const Product = require('./models/Product.js');
 const ProductVariant = require('./models/ProductVariant.js');
 const UserVoucher = require('./models/UserVoucher.js');
 const Voucher = require('./models/Voucher.js');
-
-
 require('dotenv').config();
 
 
+const port = process.env.PORT || 3000;
 
+
+
+
+const customerRoute = require('./routes/customer/Index_route');
 app.use(express.json());
 
+
+
 connect();// ket noi db
+
+
+
+
+
+
+
+customerRoute(app);
+
+
+
+
+
+
+
 
 
 
